@@ -85,7 +85,9 @@ function Install-CLIs {
 }
 
 function Install-CodexSkill {
-    $skillRoot = Join-Path $HOME ".codex\skills\gemini-worker"
+    # Current Codex user-skill root. This is preferred over the deprecated
+    # $CODEX_HOME/skills location and is also visible to Codex Desktop.
+    $skillRoot = Join-Path $HOME ".agents\skills\gemini-worker"
     Write-Host "[setup] Installing Codex skill to $skillRoot"
 
     if (Test-Path -LiteralPath $skillRoot) {
