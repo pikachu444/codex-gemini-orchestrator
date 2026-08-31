@@ -108,7 +108,17 @@ function Set-TopLevelTomlValue {
         [string]$RenderedValue
     )
 
+    # Only inspect lines before the first TOML section. A profile may contain
+    # the same key and must not be mistaken for the global value.
+    $firstSection = $Lines.Count
     for ($i = 0; $i -lt $Lines.Count; $i++) {
+        if ($Lines[$i] -match "^\s*\[.+\]\s*$") {
+            $firstSection = $i
+            break
+        }
+    }
+
+    for ($i = 0; $i -lt $firstSection; $i++) {
         if ($Lines[$i] -match "^\s*$([regex]::Escape($Key))\s*=") {
             $Lines[$i] = "$Key = $RenderedValue"
             return
