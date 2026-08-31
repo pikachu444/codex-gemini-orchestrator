@@ -140,10 +140,10 @@ if (Test-Path -LiteralPath $stderrPath) {
 $result = @"
 # Gemini worker result
 
-- Exit code: `$exitCode`
-- Workspace: `$workspace`
-- Run directory: `$runDirectory`
-- Approval mode: `yolo`
+- Exit code: $exitCode
+- Workspace: $workspace
+- Run directory: $runDirectory
+- Approval mode: yolo
 - Folder trust: skipped for this headless worker session
 
 ## Gemini response
@@ -152,16 +152,14 @@ $responseText
 
 ## stderr
 
-```text
 $stderrText
-```
 
 ## Artifacts
 
-- Prompt: `$promptPath`
-- Raw JSON: `$rawPath`
-- Git status before: `$gitBeforePath`
-- Git status after: `$gitAfterPath`
+- Prompt: $promptPath
+- Raw JSON: $rawPath
+- Git status before: $gitBeforePath
+- Git status after: $gitAfterPath
 "@
 
 Set-Content -LiteralPath $resultPath -Value $result -Encoding UTF8
