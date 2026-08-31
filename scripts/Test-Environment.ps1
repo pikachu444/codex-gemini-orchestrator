@@ -69,8 +69,8 @@ else {
 $configPath = Join-Path $HOME ".codex\config.toml"
 if (Test-Path -LiteralPath $configPath) {
     $config = Get-Content -LiteralPath $configPath -Raw
-    $hasNetwork = $config -match "(?m)^\s*network_access\s*=\s*true\s*$"
-    $hasNever = $config -match "(?m)^\s*approval_policy\s*=\s*[\"']never[\"']\s*$"
+    $hasNetwork = $config -match '(?m)^\s*network_access\s*=\s*true\s*$'
+    $hasNever = $config -match '(?m)^\s*approval_policy\s*=\s*["'']never["'']\s*$'
     Write-Host "Codex config: $configPath"
     Write-Host "  approval_policy=never: $hasNever"
     Write-Host "  network_access=true:   $hasNetwork"
