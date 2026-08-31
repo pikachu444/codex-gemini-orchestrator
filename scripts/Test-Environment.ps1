@@ -58,7 +58,7 @@ if ($node.Found -and $node.Version -match "v(\d+)") {
     }
 }
 
-$skillPath = Join-Path $HOME ".codex\skills\gemini-worker\SKILL.md"
+$skillPath = Join-Path $HOME ".agents\skills\gemini-worker\SKILL.md"
 if (Test-Path -LiteralPath $skillPath) {
     Write-Host "Codex skill: installed ($skillPath)"
 }
