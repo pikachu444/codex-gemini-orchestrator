@@ -48,7 +48,13 @@ Write-Host ""
 Write-Host "=== Codex + Gemini environment ==="
 $results | Format-Table -AutoSize
 
-$missing = @($results | Where-Object { -not $_.Found })
+$requiredNames = @("node", "npm", "codex", "gemini")
+$missing = @($results | Where-Object { ($requiredNames -contains $_.Name) -and (-not $_.Found) })
+
+$git = $results | Where-Object { $_.Name -eq "git" }
+if (-not $git.Found) {
+    Write-Warning "git is not installed. The worker still runs, but before/after git status capture will be unavailable."
+}
 
 $node = $results | Where-Object { $_.Name -eq "node" }
 if ($node.Found -and $node.Version -match "v(\d+)") {
